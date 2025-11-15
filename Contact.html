@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fashionify Contact</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+:root {
+    --main-dark: #333333;
+    --main-blue: #006464;
+    --bg-light: #edecc7;
+    --main-blue-light: #70c4c4;
+}
+
+/* Body & Background */
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    line-height: 1.6;
+}
+.contact-container {
+    background-image: url('Images/unnamed-52.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+    box-sizing: border-box;
+}
+.content-subcontainer {
+    background-color: rgba(255,255,255,0.1);
+    backdrop-filter: blur(8px);
+    padding: 50px 30px;
+    border-radius: 12px;
+    max-width: 960px;
+    width: 100%;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+/* Header */
+header { margin-bottom: 40px; }
+.logo { font-size: 3.5em; color: var(--main-blue); margin:0; font-weight:700; letter-spacing:4px; }
+
+/* Sections */
+.sections-container { display:flex; flex-wrap:wrap; gap:40px; text-align:left; }
+.contact-info, .contact-form { flex:1 1 45%; min-width:300px; }
+.contact-info { padding-right:20px; }
+h2 { font-size:1.8em; color: var(--main-blue); margin-top:0; margin-bottom:25px; font-weight:700; border-bottom:2px solid var(--main-blue); padding-bottom:10px; text-align:center; }
+.info-text { display:flex; align-items:center; margin-bottom:20px; font-size:1em; color:#edecc7; }
+.info-text i { color: var(--main-blue-light); margin-right:15px; font-size:1.5em; width:30px; text-align:center; }
+.social-icons { margin-top:30px; text-align:center; }
+.social-icons a { color:#333; font-size:1.8em; margin:0 15px; transition: color 0.3s; }
+.social-icons a:hover { color: var(--main-blue-light); }
+.form-group { margin-bottom:20px; }
+.form-group label { display:block; margin-bottom:5px; font-weight:400; color:#555; font-size:0.9em; }
+.form-group input, .form-group textarea { width:100%; padding:10px; border:1px solid #ccc; border-radius:4px; font-family:inherit; font-size:1em; transition:border-color 0.3s; }
+.form-group input:focus, .form-group textarea:focus { border:2px solid var(--main-blue); outline:none; }
+.submit-btn { width:100%; padding:12px; background-color: var(--main-blue); color:#edecc7; border:none; border-radius:4px; font-size:1.1em; cursor:pointer; transition:0.3s; }
+.submit-btn:hover { background-color:#edecc7; color:var(--main-blue); }
+
+/* Map */
+.map-container { width:100%; height:300px; margin-bottom:15px; border:4px solid var(--main-blue-light); border-radius:8px; overflow:hidden; }
+.map-container iframe { display:block; }
+.map-caption { font-style:italic; color:#777; font-size:0.9em; }
+
+/* Message Box */
+.Message-Box { position:fixed; left:35%; padding:15px 25px; border-radius:8px; z-index:100; max-width:90%; box-sizing:border-box; text-align:left; font-weight:500; transition:opacity 0.4s, transform 0.4s; display:none; }
+.Message-Box.show { display:block; transform: translateY(0); }
+.error-box { background-color:#cc0000; color:white; }
+.success-box { background-color:#008000; color:white; }
+#Close-Btn { background:none; border:none; color:inherit; font-size:1.2em; font-weight:bold; cursor:pointer; float:right; }
+#Username_Error,#Email_Error,#Subject_Error,#Message_Error { color:red; font-size:0.85em; margin-top:5px; margin-bottom:10px; display:none; }
+
+/* Navbar */
+.navbar { background-color: var(--bg-light); border-radius:0 0 12px 12px; position:relative; box-shadow:0 2px 6px rgba(0,0,0,0.1); }
+.nav-container { max-width:1280px; margin:0 auto; padding:0 1rem; height:64px; display:flex; justify-content:space-between; align-items:center; }
+.brand { font-size:1.5rem; font-weight:bold; color:var(--main-dark); text-decoration:none; display:flex; align-items:center; }
+.brand img { height:40px; width:auto; margin-right:8px; }
+.menu-icon { display:flex; flex-direction:column; cursor:pointer; padding:8px; border:none; background:transparent; gap:5px; }
+.menu-icon span { width:25px; height:3px; background:var(--main-dark); transition:0.3s; }
+.nav-links { display:none; position:absolute; top:64px; left:0; right:0; background-color: var(--bg-light); padding:10px; flex-direction:column; }
+.nav-links a { padding:10px; text-decoration:none; color:var(--main-dark); font-weight:500; border-radius:8px; }
+.nav-links a:hover { background-color: var(--main-blue); color: var(--bg-light); }
+.nav-links .dropdown-menu { cursor:pointer; }
+.dropdown-content { display:none; flex-direction:column; margin-left:15px; }
+.dropdown-menu.open .dropdown-content { display:flex; }
+.cta-button { background-color: var(--main-blue); color: var(--bg-light); padding:10px 16px; border-radius:8px; text-decoration:none; }
+.cta-button:hover { background-color: var(--main-dark); }
+@media(min-width:768px){ 
+    .menu-icon{display:none;} 
+    .nav-links{ display:flex; position:static; flex-direction:row; gap:2rem; padding:0; } 
+    .nav-links a { margin:0; }
+    .dropdown-content { position:absolute; background-color: var(--bg-light); border:1px solid #ccc; border-radius:8px; top:100%; left:0; display:none; }
+    .dropdown-menu:hover .dropdown-content { display:flex; flex-direction:column; min-width:200px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="#" class="brand"><img src="Images/logo.png" alt="Logo">FASHIONIFY</a>
+    <div class="menu-icon" id="mobile-menu-button"><span></span><span></span><span></span></div>
+    <div class="nav-links" id="nav-links">
+      <a href="index.html">Home</a>
+      <div class="dropdown-menu" id="brands-dropdown-toggle">Brands
+        <div class="dropdown-content">
+          <a href="Gul_Ahmed_shop.html">Gul_Ahmed</a>
+          <a href="Lakmé_shop.html">Lakmé</a>
+          <a href="khaadi_shop.html">Khaadi</a>
+          <a href="Sana_Safinaz_shop.html">Sana_Safinaz</a>
+        </div>
+      </div>
+      <a href="AboutUs.html">About Us</a>
+      <a href="Contact.html">Contact</a>
+      <a href="feedback.html">Feedback</a>
+    </div>
+    <a href="Register.html" class="cta-button">Sign Up</a>
+  </div>
+</nav>
+
+<!-- Message Box -->
+<div class="Message-Box" id="Message-Box">
+    <button id="Close-Btn" onclick="CloseMessage()">&times;</button>
+    <p><strong id="Message-Title"></strong></p>
+    <p id="Message-text"></p>
+</div>
+
+<!-- Contact Section -->
+<div class="contact-container">
+<div class="content-subcontainer">
+<header><h1 class="logo">FASHIONIFY</h1></header>
+<div class="sections-container">
+<section class="contact-info">
+<h2>Reach Out to Our Studio</h2>
+<div class="info-text"><i class="fas fa-envelope"></i> <p>EMAIL: info@fashionyfy.com</p></div>
+<div class="info-text"><i class="fas fa-phone-alt"></i> <p>PHONE: +92 0321198756</p></div>
+<div class="info-text"><i class="fas fa-map-marker-alt"></i> <p>STUDIO: 123 Fashion north nazmabad, NY, NY 10001</p></div>
+<div class="social-icons">
+<a href="#"><i class="fab fa-facebook-f"></i></a>
+<a href="#"><i class="fab fa-twitter"></i></a>
+<a href="#"><i class="fab fa-instagram"></i></a>
+</div>
+</section>
+
+<section class="contact-form">
+<h2>Contact Form</h2>
+<div class="form-group">
+<label for="name">Your Name</label>
+<input type="text" id="name">
+<p id="Username_Error">Username is Required</p>
+</div>
+<div class="form-group">
+<label for="email">Your Email</label>
+<input type="email" id="email">
+<p id="Email_Error">Email is Required</p>
+</div>
+<div class="form-group">
+<label for="subject">Subject</label>
+<input type="text" id="subject">
+<p id="Subject_Error">Subject is Required</p>
+</div>
+<div class="form-group">
+<label for="message">Your Message</label>
+<textarea id="message" rows="6"></textarea>
+<p id="Message_Error">Message is Required</p>
+</div>
+<button type="submit" class="submit-btn" onclick="Form_Check()">Send Message</button>
+</section>
+</div>
+
+<section class="map-section">
+<h2>Our Location</h2>
+<div class="map-container">
+<iframe src="https://maps.google.com/maps?q=123%20Fashion%20Ave,%20New%20York%20City&t=&z=13&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+</div>
+<p class="map-caption">Visit our main studio, conveniently located in the New York Fashion District.</p>
+</section>
+</div>
+</div>
+
+<script>
+/* Mobile menu toggle */
+const mobileButton = document.getElementById('mobile-menu-button');
+const navLinks = document.getElementById('nav-links');
+mobileButton.addEventListener('click', ()=>{
+    navLinks.classList.toggle('is-open');
+});
+
+/* Dropdown toggle for mobile */
+document.querySelectorAll('.dropdown-menu').forEach(menu=>{
+    menu.addEventListener('click', e=>{
+        if(window.innerWidth < 768){
+            menu.classList.toggle('open');
+        }
+    });
+});
+
+/* Form validation */
+function Form_Check(){
+const Username=document.getElementById("name").value;
+const Email=document.getElementById("email").value;
+const Subject=document.getElementById("subject").value;
+const Message=document.getElementById("message").value;
+document.getElementById("Username_Error").style.display="none";
+document.getElementById("Email_Error").style.display="none";
+document.getElementById("Subject_Error").style.display="none";
+document.getElementById("Message_Error").style.display="none";
+
+if(!Username && !Email && !Subject && !Message){
+alert("Please fill all fields!");
+return;
+}
+if(!Username){document.getElementById("Username_Error").style.display="block"; return;}
+if(!Email){document.getElementById("Email_Error").style.display="block"; return;}
+if(!Subject){document.getElementById("Subject_Error").style.display="block"; return;}
+if(!Message){document.getElementById("Message_Error").style.display="block"; return;}
+alert("Message sent successfully!");
+}
+
+function CloseMessage(){
+const box=document.getElementById("Message-Box");
+box.classList.remove("success-box","error-box","show");
+}
+</script>
+
+</body>
+</html>
